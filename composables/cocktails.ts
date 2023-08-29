@@ -1,22 +1,20 @@
-import { Cocktail } from '@/types/cocktail'; 
-import { Category } from '@/types/category';
+import { AsyncData, useFetch } from 'nuxt/app';
+import { ICocktails } from '@/types/cocktailType'; 
+import { ICategories } from '@/types/categoryType';
 
 const API_URL = process.env.API_URL || 'https://www.thecocktaildb.com/api/json/v1/1'
 
-interface IFetchResult<T> {
-  data: T | null;
-  pending: any | null
-  error: any | null;
+export const getCocktailByName = async (name: string | undefined): Promise<AsyncData<ICocktails, Error>> => {
+  const { data, error} = await useFetch<ICocktails>(() => `${API_URL}/search.php?s=${name}`)
+  return data.value?.drinks
 }
 
-export const getCocktailByName = async (name: string):Promise<IFetchResult<Cocktail[]>> => {
-  return await useFetch<Cocktail[]>(() => `${API_URL}/search.php?s=${name}`)
+export const getAllCategories = async (): Promise<AsyncData<ICategories, Error>> => {
+  const { data, error} = await useFetch<ICategories>(() => `${API_URL}/list.php?c=list`)
+  return data.value?.drinks
 }
 
-export const getAllCategories = async (): Promise<IFetchResult<Category[]>> => {
-  return await useFetch<Category[]>(() => `${API_URL}/list.php?c=list`)
-}
-
-export const getDrinksByCategory = async (category: string): Promise<IFetchResult<Cocktail[]>> => {
-  return await useFetch<Cocktail[]>(() => `${API_URL}/filter.php?c=${category}`)
+export const getDrinksByCategory = async (category: string | undefined): Promise<AsyncData<ICocktails, Error>> => {
+  const { data, error} = await useFetch<ICocktails>(() => `${API_URL}/filter.php?c=${category}`)
+  return data.value?.drinks
 }

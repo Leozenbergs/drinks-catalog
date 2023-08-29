@@ -1,4 +1,8 @@
-export type Cocktail = {
+export interface ICocktails {
+  drinks: CocktailType[]
+}
+
+export type CocktailType = {
   dateModified: string
   idDrink: string
   strAlcoholic: string

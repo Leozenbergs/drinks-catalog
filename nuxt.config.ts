@@ -7,6 +7,7 @@ export default defineNuxtConfig({
     "@layouts": "./layouts",
     "@pages": "./pages",
   },
+  ssr: false,
   build: {
     transpile: ['vuetify'],
   },

@@ -1,5 +1,5 @@
 <template>
-  <v-layout>
+  <v-layout >
     <main-app-bar></main-app-bar>
     <v-main>
       <NuxtPage />
@@ -11,3 +11,9 @@
 import MainAppBar from "../components/app-bar/mainBar.vue";
 
 </script>
+
+<style>
+.cursor-pointer {
+  cursor: pointer;
+}
+</style>
