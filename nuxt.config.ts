@@ -12,10 +12,5 @@ export default defineNuxtConfig({
   },
   typescript: {
     shim: false
-  },
-  runtimeConfig: {
-    public: {
-      baseURL: process.env.API_URL || 'www.thecocktaildb.com/api/json/v1/1',
-    },
-  },
+  }
 })
