@@ -7,7 +7,7 @@ import {createVuetify} from 'vuetify'
 const vuetify = createVuetify({
     components,
     directives,
-    ssr: true,
+    ssr: false,
     icons: {
         defaultSet: 'mdi', // This is already the default value - only for display purposes
     },

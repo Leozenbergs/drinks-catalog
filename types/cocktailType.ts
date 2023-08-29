@@ -1,4 +1,4 @@
-export type Cocktail = {
+export type CocktailType = {
   dateModified: string
   idDrink: string
   strAlcoholic: string

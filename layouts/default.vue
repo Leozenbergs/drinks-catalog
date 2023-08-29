@@ -1,5 +1,5 @@
 <template>
-  <v-layout>
+  <v-layout >
     <main-app-bar></main-app-bar>
     <v-main>
       <NuxtPage />

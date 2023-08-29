@@ -1,7 +1,17 @@
 <template>
   <v-container>
     <h1 class="d-flex justify-center mb-4">All Categories</h1>
-    {{ categories }}
+    <v-row no-gutters class="justify-start">
+      <v-col
+        v-for="(value, index) in categories"
+        :xl="4"
+        :xs="12"
+        :key="index"
+        class="mb-4"
+      >
+        <category-card :item="value"/>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
@@ -10,15 +20,22 @@
   import { ref, onMounted } from 'vue'
   
   import { getCocktailByName, getAllCategories } from '../composables/cocktails';
+  import categoryCard from '../components/cards/categoryCard.vue';
 
-  const drinks = ref([])
-  const categories = ref([])
+  const categories = ref()
 
-  onMounted(async() => {
-    const cocktails = await getCocktailByName('margarita')
-    drinks.value = useState('drinks', () => cocktails.data)
+  // const cocktails = async () => getCocktailByName('margarita')
+  // const drinks = cocktails
+  // useState('drinks', () => cocktails)
 
-    const teste = await getAllCategories()
-    categories.value = useState('categories', () => teste.data)
+  async function setCategories() {
+    const categoryItems = await getAllCategories()
+    categories.value = categoryItems
+    useState('categories', () => categoryItems)
+  }
+
+  onMounted(() => {
+    setCategories()
   })
+
 </script>
