@@ -11,3 +11,9 @@
 import MainAppBar from "../components/app-bar/mainBar.vue";
 
 </script>
+
+<style>
+.cursor-pointer {
+  cursor: pointer;
+}
+</style>

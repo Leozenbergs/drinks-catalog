@@ -1,17 +1,22 @@
 <template>
   <v-container>
-    <h1 class="d-flex justify-center mb-4">All Categories</h1>
-    <v-row no-gutters class="justify-start">
-      <v-col
+    <page-title title="All Categories" description="Choose a category" />
+
+    <div
+      v-if="!!categories"
+      class="d-flex justify-space-around flex-wrap"
+    >
+      <div        
         v-for="(value, index) in categories"
-        :xl="4"
-        :xs="12"
         :key="index"
-        class="mb-4"
+        class="mb-8"
       >
         <category-card :item="value"/>
-      </v-col>
-    </v-row>
+      </div>
+    </div>
+    <div v-else class="d-flex justify-center">
+      <v-progress-circular color="secondary" indeterminate></v-progress-circular>
+    </div>
   </v-container>
 </template>
 
@@ -19,14 +24,12 @@
   import { useState } from 'nuxt/app';
   import { ref, onMounted } from 'vue'
   
-  import { getCocktailByName, getAllCategories } from '../composables/cocktails';
+  import { getAllCategories } from '../composables/cocktails';
   import categoryCard from '../components/cards/categoryCard.vue';
+  import pageTitle from '../components/pageTitle.vue';
 
   const categories = ref()
 
-  // const cocktails = async () => getCocktailByName('margarita')
-  // const drinks = cocktails
-  // useState('drinks', () => cocktails)
 
   async function setCategories() {
     const categoryItems = await getAllCategories()
