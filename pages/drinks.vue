@@ -61,6 +61,4 @@ const setDrinks = (items: _AsyncData<ICategories, Error>) => {
   drinks.value = items
   useState('cocktails', () => items)
 }
-
-
 </script>

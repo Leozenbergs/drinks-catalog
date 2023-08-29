@@ -18,3 +18,8 @@ export const getDrinksByCategory = async (category: string | undefined): Promise
   const { data, error} = await useFetch<ICocktails>(() => `${API_URL}/filter.php?c=${category}`)
   return data.value?.drinks
 }
+
+export const getDrinkDetailsById = async (id: string | undefined): Promise<AsyncData<ICocktails, Error>> => {
+  const { data, error} = await useFetch<ICocktails>(() => `${API_URL}/lookup.php?i=${id}`)
+  return data.value
+}
