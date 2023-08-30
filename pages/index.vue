@@ -2,18 +2,21 @@
   <v-container>
     <page-title title="All Categories" description="Choose a category" />
 
-    <div
-      v-if="!!categories"
-      class="d-flex justify-space-around flex-wrap"
+    <v-row
+      v-if="!loading"
+      center-affix
     >
-      <div        
+      <v-col        
         v-for="(value, index) in categories"
+        :lg="4"
+        :sm="6"
+        :xs="12"
         :key="index"
-        class="mb-8"
+        class="mb-8 d-flex justify-center"
       >
         <category-card :item="value"/>
-      </div>
-    </div>
+      </v-col>
+    </v-row>
     <div v-else class="d-flex justify-center">
       <v-progress-circular color="secondary" indeterminate></v-progress-circular>
     </div>
@@ -29,12 +32,20 @@
   import pageTitle from '../components/pageTitle.vue';
 
   const categories = ref()
-
+  const loading = ref(true)
 
   async function setCategories() {
-    const categoryItems = await getAllCategories()
-    categories.value = categoryItems
-    useState('categories', () => categoryItems)
+    try {
+      const categoryItems = await getAllCategories()
+
+      categories.value = categoryItems
+      useState('categories', () => categoryItems)
+    } catch(e) {
+      console.log(e);
+      useState('error', () => true)
+    } finally {
+      loading.value = false
+    }
   }
 
   onMounted(() => {

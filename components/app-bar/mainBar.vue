@@ -1,11 +1,12 @@
 <template>
-  <v-app-bar app flat color="secondary">
+  <v-app-bar app elevation="2" color="secondary">
     <v-app-bar-title
       @click="() => navigateTo({path: '/'})"
       class="cursor-pointer"
     >
-        Drinks Catalog
-      </v-app-bar-title>
+      &#129346
+      Drinks Catalog
+    </v-app-bar-title>
 
     <v-spacer></v-spacer>
 
