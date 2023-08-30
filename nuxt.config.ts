@@ -7,12 +7,5 @@ export default defineNuxtConfig({
   },
   typescript: {
     shim: false
-  },
-  app: {
-    head: {
-      link: [
-        { rel: "icon", type: "image/png", href: "/favicon.ico" }
-      ]
-    }
   }
 })
