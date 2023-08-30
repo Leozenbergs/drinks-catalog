@@ -4,8 +4,9 @@
       @click="() => navigateTo({path: '/'})"
       class="cursor-pointer"
     >
-        Drinks Catalog
-      </v-app-bar-title>
+      &#129346
+      Drinks Catalog
+    </v-app-bar-title>
 
     <v-spacer></v-spacer>
 

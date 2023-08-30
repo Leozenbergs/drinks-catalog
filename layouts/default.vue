@@ -1,14 +1,20 @@
 <template>
-  <v-layout class="background">
+  <v-layout>
     <main-app-bar></main-app-bar>
     <v-main>
       <NuxtPage />
+      <page-footer />
+      <error-alert v-if="statusError" />
     </v-main>
   </v-layout>
 </template>
 
 <script lang="ts" setup>
 import MainAppBar from "../components/app-bar/mainBar.vue";
+import pageFooter from "../components/footers/pageFooter.vue";
+import errorAlert from "../components/alerts/errorAlert.vue";
+
+const statusError = useState('error')
 
 </script>
 
@@ -17,10 +23,4 @@ import MainAppBar from "../components/app-bar/mainBar.vue";
   cursor: pointer;
 }
 
-.background {
-  background-image: url('/img/red-drink.svg');
-  background-position: bottom;
-  background-size: 40%;
-  min-height: 90vh;
-}
 </style>
