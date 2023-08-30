@@ -9,7 +9,18 @@
       rounded="lg"
       v-click-outside="close"
     >
-      <v-card-title>{{ details?.strDrink }}</v-card-title>
+      <v-card-title class="d-flex">
+        <div>{{ details?.strDrink }}</div>
+        <v-spacer></v-spacer>
+        <v-btn
+          variant="text"
+          icon
+          :color="isFavorite ? 'primary' : '#333'"
+          @click="toggleFavorite"
+        >
+          <v-icon>{{ isFavorite ? 'mdi-star' : 'mdi-star-outline'}}</v-icon>
+        </v-btn>
+      </v-card-title>
       <v-card-subtitle><strong>Category: </strong>{{ details?.strCategory }}</v-card-subtitle>
       <v-card-text>
         <div class="d-flex justify-space-between pt-4">
@@ -57,6 +68,7 @@
 import { ref, watch } from 'vue'
 
 import { getDrinkDetailsById } from '../../composables/cocktails';
+import { setFavorite, getFavoriteById, removeFavorite } from '../../composables/favorites';
 
 const router = useRouter()
 const routeQuery = router.currentRoute.value
@@ -70,6 +82,8 @@ watch(() => router.currentRoute.value, (query) => {
   return getDetailsById()
 }, { immediate: true })
 
+const isFavorite = computed( () => !!getFavoriteById(id.toString()))
+
 async function getDetailsById() {
   try {
     const drinkDetails = await getDrinkDetailsById(id?.toString())
@@ -78,6 +92,10 @@ async function getDetailsById() {
     console.log(e)
     useState('error', () => true)
   }
+}
+
+function toggleFavorite() {
+  isFavorite ? removeFavorite(id.toString()) : setFavorite(details.value)
 }
 
 function close() {
