@@ -13,14 +13,19 @@
         <v-card-title class="d-flex">
           <div>{{ details?.strDrink }}</div>
           <v-spacer></v-spacer>
-          <v-btn
-            variant="text"
-            icon
-            :color="isFavorite ? 'primary' : '#333'"
-            @click="toggleFavorite"
-          >
-            <v-icon>{{ isFavorite ? 'mdi-star' : 'mdi-star-outline'}}</v-icon>
-          </v-btn>
+          <v-tooltip text="Favorite">
+            <template v-slot:activator="{ props }">
+              <v-btn
+                v-bind="props"
+                variant="text"
+                icon
+                :color="isFavorite ? 'primary' : '#333'"
+                @click="toggleFavorite"
+              >
+                <v-icon>{{ isFavorite ? 'mdi-star' : 'mdi-star-outline'}}</v-icon>
+              </v-btn>
+            </template>
+          </v-tooltip>
         </v-card-title>
         <v-card-subtitle><strong>Category: </strong>{{ details?.strCategory }}</v-card-subtitle>
         <v-card-text>
@@ -38,7 +43,7 @@
         </v-card-text>
   
         <v-card-actions>
-          <v-btn color="primary" variant="tonal" width="100%" @click="close">Close Dialog</v-btn>
+          <v-btn color="primary" variant="tonal" width="100%" @click="close">Close</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>

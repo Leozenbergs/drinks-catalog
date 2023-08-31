@@ -20,7 +20,7 @@
         </template>
       </v-img>
     </div>
-    <v-card-title>{{ drink.strDrink }}</v-card-title>
+    <v-card-title>{{ drink.strDrink ? drink.strDrink : 'Not informed' }}</v-card-title>
   </v-card>
 </template>
 
