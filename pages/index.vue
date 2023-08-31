@@ -1,68 +1,41 @@
 <template>
   <v-container>
-    <page-title title="All Categories" description="Choose a category" />
+    <div class="d-flex justify-center align-center index-page">
+      <div class="text-center">
+        <h2 class="mb-4 title">Welcome</h2>
 
-    <div v-if="!loading">
-      <v-list variant="flat" class="bg-transparent">
-        <template v-for="(value, index) in categories" :key="index">
-          <v-hover>
-            <template v-slot:default="{ isHovering, props}">
-              <v-list-item
-                v-bind="props"
-                rounded
-                :class="`mb-2 ${isHovering ? 'bg-secondary' : '#fff'}`"
-                @click="navigate(value)"
-              >
-                <v-list-item-title>{{ value.strCategory }}</v-list-item-title>
-              </v-list-item>
-            </template>
-          </v-hover>
-        </template>
-      </v-list>
-    </div>
-    <!-- <v-row
-      v-if="!loading"
-      center-affix
-    >
-      <v-col        
-        v-for="(value, index) in categories"
-        :lg="4"
-        :sm="6"
-        :xs="12"
-        :key="index"
-        class="mb-8 d-flex justify-center"
-      >
-        <category-card :item="value"/>
-      </v-col>
-    </v-row> -->
-    <div v-else class="d-flex justify-center">
-      <v-progress-circular color="secondary" indeterminate></v-progress-circular>
+        <div class="text-grey-darken-1 my-9 text-justify">
+        {{ introduction }}
+        </div>
+
+        <v-btn color="primary" variant="flat" @click="navigate" class="mt-5">Categories</v-btn>
+      </div>
     </div>
   </v-container>
 </template>
 
 <script lang="ts" setup>
-  import categoryCard from '../components/cards/categoryCard.vue';
-  import pageTitle from '../components/pageTitle.vue';
+  const introduction = ref(`
+    Welcome to a world of tantalizing flavors and delightful concoctions – a haven for all beverage enthusiasts. 
+    Our page is dedicated to the art and science of drinks, where each sip tells a story and every glass is a canvas of creativity. 
+    Whether you're seeking the perfect cocktail recipe to elevate your next gathering, looking to explore the nuances of various types of teas and coffees, or simply interested in learning about the history and cultural significance behind your favorite beverages, you've arrived at the right destination. 
+    Join us as we dive into the rich tapestry of beverages – from classic to innovative, comforting to exotic – and embark on a journey that engages your taste buds, piques your curiosity, and leaves you thirsty for more. Cheers to the world of drinks!
+  `)
 
-  import { getCategories } from '../composables/cocktailsHandler';
-  import { CategoryType } from '~/types/categoryType';
-
-  const categories = ref()
-  const loading = ref(true)
-
-  onMounted(async () => {
-    categories.value = await getCategories()
-    loading.value = false
-  })
-
-  function navigate(item: CategoryType) {
+  function navigate() {
     return navigateTo({
-      path: '/drinks',
-      query: {
-        "category": item.strCategory
-      }
+      path: '/categories'
     })
   }
 
 </script>
+
+<style scoped>
+.index-page {
+  height: 87vh;
+}
+
+.title {
+  font-size: 5em;
+}
+</style>

@@ -15,7 +15,7 @@
       name="search"
       density="compact"
       variant="outlined"
-      placeholder="Busque um drink"
+      placeholder="Search drinks"
       prepend-inner-icon="mdi-magnify"
       rounded
       hide-details
