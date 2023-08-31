@@ -8,6 +8,7 @@ Requisítos funcionais:
 - Visualizar categorias de bebidas
 - Visualizar as bebidas de cada categoria
 - Visualizar os detalhes de cada bebida
+- Buscar bebida por nome
 - Favoritar bebidas
 - Desfavoritar bebidas
 
