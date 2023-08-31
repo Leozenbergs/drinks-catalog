@@ -26,7 +26,11 @@
 import drinkCard from "../../components/cards/drinkCard.vue"
 import pageTitle from '../../components/pageTitle.vue';
 
-import { getCocktailsByName, getCategoryCocktails, getAllCocktails } from "~/composables/cocktailsHandler";
+import {
+  getCocktailsByName,
+  getCategoryCocktails,
+  getAllCocktails
+} from "~/composables/cocktailsHandler";
 
 const drinks = ref()
 const loading = ref(true)

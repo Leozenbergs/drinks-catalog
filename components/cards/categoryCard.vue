@@ -4,7 +4,7 @@
     :width="300"
     :height="300"
     @click="navigate"
-    class="d-flex align-center justify-center cursor-pointer"
+    class="d-flex align-center justify-center cursor-pointer isHovering"
   >
     <h4 class="text-button"><b>{{ item.strCategory }}</b></h4>
   </v-card>
@@ -27,9 +27,3 @@
     item: CategoryType
   }>()
 </script>
-
-<style scoped>
-.card-gradient {
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0)), center center / cover no-repeat
-}
-</style>

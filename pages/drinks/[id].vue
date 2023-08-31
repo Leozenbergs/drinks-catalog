@@ -1,46 +1,48 @@
 <template>
-  <v-dialog
-    v-model="dialog"
-    height="90%"
-    width="70vw"
-    transition="slide-x-reverse-transition"
-  >
-    <v-card
-      rounded="lg"
-      v-click-outside="close"
+  <v-container>
+    <v-dialog
+      v-model="dialog"
+      height="90%"
+      width="70vw"
+      transition="slide-x-reverse-transition"
     >
-      <v-card-title class="d-flex">
-        <div>{{ details?.strDrink }}</div>
-        <v-spacer></v-spacer>
-        <v-btn
-          variant="text"
-          icon
-          :color="isFavorite ? 'primary' : '#333'"
-          @click="toggleFavorite"
-        >
-          <v-icon>{{ isFavorite ? 'mdi-star' : 'mdi-star-outline'}}</v-icon>
-        </v-btn>
-      </v-card-title>
-      <v-card-subtitle><strong>Category: </strong>{{ details?.strCategory }}</v-card-subtitle>
-      <v-card-text>
-        <div class="d-flex justify-space-between pt-4">
-          <v-img
-            :src="details?.strDrinkThumb"
-            gradient="to top right, rgba(0,0,0, .7), rgba(255, 255, 255, 0)"
-            :height="500"
-            width="50%"
-            cover
-            class="rounded-lg"
-          />
-          <details-section :details="details" />
-        </div>
-      </v-card-text>
-
-      <v-card-actions>
-        <v-btn color="primary" variant="tonal" width="100%" @click="close">Close Dialog</v-btn>
-      </v-card-actions>
-    </v-card>
-  </v-dialog>
+      <v-card
+        rounded="lg"
+        v-click-outside="close"
+      >
+        <v-card-title class="d-flex">
+          <div>{{ details?.strDrink }}</div>
+          <v-spacer></v-spacer>
+          <v-btn
+            variant="text"
+            icon
+            :color="isFavorite ? 'primary' : '#333'"
+            @click="toggleFavorite"
+          >
+            <v-icon>{{ isFavorite ? 'mdi-star' : 'mdi-star-outline'}}</v-icon>
+          </v-btn>
+        </v-card-title>
+        <v-card-subtitle><strong>Category: </strong>{{ details?.strCategory }}</v-card-subtitle>
+        <v-card-text>
+          <div class="d-flex justify-space-between pt-4">
+            <v-img
+              :src="details?.strDrinkThumb"
+              gradient="to top right, rgba(0,0,0, .7), rgba(255, 255, 255, 0)"
+              :height="500"
+              width="50%"
+              cover
+              class="rounded-lg"
+            />
+            <details-section :details="details" />
+          </div>
+        </v-card-text>
+  
+        <v-card-actions>
+          <v-btn color="primary" variant="tonal" width="100%" @click="close">Close Dialog</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+  </v-container>
 </template>
 
 <script setup lang="ts">

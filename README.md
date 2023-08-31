@@ -1,10 +1,12 @@
-# Nuxt 3 Minimal Starter
+# Drinks Catalog
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+## Configuração
 
-## Setup
 
-Make sure to install the dependencies:
+### Instale as dependencias:
+- Node ^16.10
+ou
+- Node ^14.18
 
 ```bash
 # npm
@@ -17,9 +19,9 @@ pnpm install
 yarn install
 ```
 
-## Development Server
+### Inicializando servidor
 
-Start the development server on `http://localhost:3000`:
+Será inicializado em `http://localhost:3000`:
 
 ```bash
 # npm
@@ -32,9 +34,8 @@ pnpm run dev
 yarn dev
 ```
 
-## Production
+## Build
 
-Build the application for production:
 
 ```bash
 # npm
@@ -47,7 +48,7 @@ pnpm run build
 yarn build
 ```
 
-Locally preview production build:
+##### Preview local do build:
 
 ```bash
 # npm
@@ -59,5 +60,10 @@ pnpm run preview
 # yarn
 yarn preview
 ```
+## Projeto
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+### Paleta de cores
+
+Para definir as cores eu me inspirei em aplicativos ja consoliados na area de drinks como refêrencia. E o resultado foi este:
+
+![palette](public/img/palette.png)
