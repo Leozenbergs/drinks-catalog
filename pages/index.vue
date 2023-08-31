@@ -32,7 +32,7 @@
 
 <style scoped>
 .index-page {
-  height: 90vh;
+  height: 87vh;
 }
 
 .title {

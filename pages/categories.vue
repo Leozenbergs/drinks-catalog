@@ -1,6 +1,22 @@
 <template>
-  <v-container>
+  <v-container class="categories">
     <page-title title="All Categories" description="Choose a category" />
+
+    <div class="d-flex justify-start align-center my-4">
+      <v-tooltip text="Return to index">
+        <template v-slot:activator="{ props }">
+          <v-btn
+            v-bind="props"
+            variant="flat"
+            color="neutral1"
+            icon
+            @click="navigateToIndex"
+          >
+            <v-icon>mdi-chevron-left</v-icon>
+          </v-btn>
+        </template>
+      </v-tooltip>
+    </div>
 
     <div v-if="!loading">
       <v-list variant="flat" class="bg-transparent">
@@ -23,6 +39,7 @@
     <div v-else class="d-flex justify-center">
       <v-progress-circular color="secondary" indeterminate></v-progress-circular>
     </div>
+
   </v-container>
 </template>
 
@@ -41,6 +58,12 @@
     loading.value = false
   })
 
+  function navigateToIndex() {
+    return navigateTo({
+      path: '/'
+    })
+  }
+
   function navigate(item: CategoryType) {
     return navigateTo({
       path: '/drinks',
@@ -49,5 +72,10 @@
       }
     })
   }
-
 </script>
+
+<style scoped>
+.categories {
+  height: 90vh;
+}
+</style>
