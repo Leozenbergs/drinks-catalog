@@ -6,6 +6,7 @@ export const setFavorite = (details: CocktailType) => {
 
   favoriteDrinks.push({
     idDrink: details?.idDrink,
+    strDrink: details?.strDrink,
     strDrinkThumb: details?.strDrinkThumb
   })
 
@@ -13,17 +14,19 @@ export const setFavorite = (details: CocktailType) => {
 }
 
 export const getFavoriteById = (id: string) => {
-  let favorites = localStorage.getItem('favorites')
-  let favoriteDrinks = !!favorites ? JSON.parse(favorites) : []
+  const favorites = localStorage.getItem('favorites')
+  const favoriteDrinks = !!favorites ? JSON.parse(favorites) : []
 
   return favoriteDrinks.find((drink: CocktailType) => drink.idDrink === id)
 }
 
 export const removeFavorite = (id: string) => {
-  let favorites = localStorage.getItem('favorites')
-  let favoriteDrinks = !!favorites ? JSON.parse(favorites) : []
+  const favorites = localStorage.getItem('favorites')
+  const favoriteDrinks = !!favorites ? JSON.parse(favorites) : []
 
-  const index = favoriteDrinks.indexOf((drink: CocktailType) => drink.idDrink === id)
+  const drinkIds = favoriteDrinks.map((drink: CocktailType) => drink.idDrink)
+
+  const index = drinkIds.indexOf(id)
 
   favoriteDrinks.splice(index, 1)
 

@@ -23,15 +23,10 @@
 </template>
 
 <script lang="ts" setup>
-import { _AsyncData } from 'nuxt/dist/app/composables/asyncData';
-import { ref, watch } from 'vue'
-
-import { ICategories } from '~/types/categoryType';
 import drinkCard from "../../components/cards/drinkCard.vue"
 import pageTitle from '../../components/pageTitle.vue';
 
-import { getDrinksByCategory, getCocktailByName } from '../../composables/cocktails';
-
+import { getCocktailsByName, getCategoryCocktails, getAllCocktails } from "~/composables/cocktailsHandler";
 
 const drinks = ref()
 const loading = ref(true)
@@ -41,56 +36,23 @@ const routeQuery = currentRoute.value.query
 const category = ref(routeQuery.category)
 const search = ref(routeQuery.search)
 
-watch(() => currentRoute.value.query, (query) => {
-  !!query.category ? category.value = query.category : search.value = query.search
+watch(() => currentRoute.value.query, async (query) => {
+  category.value = query.category
+  search.value = query.search
 
-  if((!search.value && search.value !== '') && !!category.value) return getCategoryCocktails()
-  if(!!search.value && !category.value) return getCocktailsByName()
-  return getAllCocktails()
+  await buildRequests()
+  loading.value = false
 }, { deep: true, immediate: true })
 
+async function buildRequests() {
+  const noSearch = (!search.value && search.value?.toString().trim() !== '')
+  const hasCategory = !!category.value
 
-async function getCategoryCocktails() {
-  try {
-    const items = await getDrinksByCategory(category.value?.toString())
-    setDrinks(items)
-  } catch(e) {
-    console.log(e);
-    useState('error', () => true)
-  } finally {
-    loading.value = false
-  }
+  if(noSearch && hasCategory) return drinks.value = await getCategoryCocktails(category.value?.toString())
+  if(!noSearch && !hasCategory) return drinks.value = await getCocktailsByName(search.value?.toString())
+  return drinks.value = getAllCocktails()
 }
 
-async function getCocktailsByName() {
-  try {
-    const items = await getCocktailByName(search.value?.toString())
-    setDrinks(items)
-  } catch(e) {
-    console.log(e);
-    useState('error', () => true)
-  } finally {
-    loading.value = false
-  }
-}
-
-async function getAllCocktails() {
-  try {
-    const items = await getCocktailByName('')
-    setDrinks(items)
-  } catch(e) {
-    console.log(e);
-    useState('error', () => true)
-  } finally {
-    loading.value = false
-  }
-}
-
-const setDrinks = (items: _AsyncData<ICategories, Error>) => {
-  drinks.value = undefined
-  drinks.value = items
-  useState('cocktails', () => items)
-}
 </script>
 
 <style>

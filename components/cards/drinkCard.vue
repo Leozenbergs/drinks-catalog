@@ -25,14 +25,11 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
-
 import { CocktailType } from '~/types/cocktailType';
 
 const { drink } = defineProps<{
   drink: CocktailType
 }>()
-const dialog = ref(false)
 
 function showDetails() {
   return navigateTo({
