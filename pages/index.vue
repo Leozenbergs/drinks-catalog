@@ -24,32 +24,16 @@
 </template>
 
 <script lang="ts" setup>
-  import { useState } from 'nuxt/app';
-  import { ref, onMounted } from 'vue'
-  
-  import { getAllCategories } from '../composables/cocktails';
+  import { getCategories } from '../composables/cocktailsHandler';
   import categoryCard from '../components/cards/categoryCard.vue';
   import pageTitle from '../components/pageTitle.vue';
 
   const categories = ref()
   const loading = ref(true)
 
-  async function setCategories() {
-    try {
-      const categoryItems = await getAllCategories()
-
-      categories.value = categoryItems
-      useState('categories', () => categoryItems)
-    } catch(e) {
-      console.log(e);
-      useState('error', () => true)
-    } finally {
-      loading.value = false
-    }
-  }
-
-  onMounted(() => {
-    setCategories()
+  onMounted(async () => {
+    categories.value = await getCategories()
+    loading.value = false
   })
 
 </script>
